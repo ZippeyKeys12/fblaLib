@@ -1,0 +1,11 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "SHS eLib",
+  "short_name": "SHS eLib",
+  "version": "com.zipp.fblaLib",
+  "description": "Electronic Library App",
+  "author": "Zain Aamer",
+  "icons": [],
+  "start_url": "index.html"
+}

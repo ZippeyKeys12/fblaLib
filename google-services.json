@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "814292317108",
+    "firebase_url": "https://lib-fbla-zipp.firebaseio.com",
+    "project_id": "lib-fbla-zipp",
+    "storage_bucket": "lib-fbla-zipp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:814292317108:android:5e822cafe25f49f3",
+        "android_client_info": {
+          "package_name": "com.zipp.fblaLib"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "814292317108-apkngvp801od0veoo8finc52c91rmtfn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzxot7tD21d_hW9dKGPEUiC0pccjp-MdI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
