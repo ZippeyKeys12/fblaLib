@@ -26,10 +26,10 @@
     </platform>
     <allow-navigation href="*" />
     <universal-links>
-        <host name="abc123.app.goo.gl" scheme="https" />
-    	<host name="my-app.firebaseapp.com" scheme="https">
-        	<path url="/__/auth/callback"/>
-    	</host>
+        <host name="https://c729e.app.goo.gl" scheme="https" />
+        <host name="lib-fbla-zipp.firebaseapp.com" scheme="https">
+            <path url="/__/auth/callback" />
+        </host>
     </universal-links>
     <preference name="AndroidLaunchMode" value="singleTask" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
