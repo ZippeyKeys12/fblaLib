@@ -1,15 +1,60 @@
-# serendipitous HS eLib
+# Serendipitous HS eLib
 ###### Created by Zain Aamer
 
 ## Setup
-- Copy firebase credentials into src/App.vue
-- Copy firebase credentials into config.xml
-- Run:
+- Click Clone or Download and then Download ZIP
+- Run in the directory:
 ```
 yarn install
 cordova prepare
 ```
 - Drag the "manifestWriter.js" in the root to "plugins/cordova-universal-links-plugin/hooks/lib/android/" and replace the "manifestWriter.js" there
+
+## Compiling
+- Make sure you've gone through the steps in Setup above
+
+### Browser
+```
+cordova run browser 
+```
+For live-reload:
+```
+cordova run browser -- --lr
+```
+
+### Android
+```
+cordova build android --debug|release
+```
+- Apk file will be located in platform/android/app/build/outputs/apk/debug|release
+- Load this onto the device and run to install the app
+
+## Known Issues
+
+### Android
+- The login and account creation firebaseUI does not appear
+  - A custom UI is in the works
+- Content Security Policy is weak
+  - To be addressed after the new login UI is sorted out
+  
+## To Do
+
+### General
+- Add map
+- Badges on Checked Out Items icon for overdue books
+- Removing unused code and dependencies
+- Display book cover, and synopsis
+- Browse page
+- Eventually & Hopefully:
+  - Overdrive support
+  - Follett support
+
+
+### Android
+- Native notifications
+
+### iOS
+- Add support
 
 ## Template
 [Vuetify - Webpack Cordova Template](https://github.com/kevinqqnj/cordova-template-vuetify-webpack)
