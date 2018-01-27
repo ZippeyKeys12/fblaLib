@@ -32,16 +32,12 @@ cordova build android --debug|release
 ## Known Issues
 
 ### Android
-- The login and account creation firebaseUI does not appear
-  - A custom UI is in the works
 - Content Security Policy is weak
   - To be addressed after the new login UI is sorted out
   
 ## To Do
 
 ### General
-- Add map
-- Badges on Checked Out Items icon for overdue books
 - Removing unused code and dependencies
 - Display book cover, and synopsis
 - Browse page

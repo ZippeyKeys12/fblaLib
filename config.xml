@@ -3,6 +3,7 @@
     <hook src="hooks/hookers.js" type="before_prepare" />
     <hook src="hooks/beforedep.js" type="before_deploy" />
     <name>SHS eLib</name>
+    <icon src="src/static/favicon.png" />
     <description>
         Electronic Library App
     </description>

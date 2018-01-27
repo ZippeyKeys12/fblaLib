@@ -1709,7 +1709,7 @@ copy-webpack-plugin@^4.0.1:
     pify "^3.0.0"
     serialize-javascript "^1.4.0"
 
-cordova-android@^7.0.0:
+cordova-android@~7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/cordova-android/-/cordova-android-7.0.0.tgz#c95bedfcfbc3863b180c4d29effec4f79361d19d"
   dependencies:
@@ -2114,10 +2114,6 @@ detect-libc@^1.0.2:
 detect-node@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/detect-node/-/detect-node-2.0.3.tgz#a2033c09cc8e158d37748fbde7507832bd6ce127"
-
-dialog-polyfill@^0.4.7:
-  version "0.4.9"
-  resolved "https://registry.yarnpkg.com/dialog-polyfill/-/dialog-polyfill-0.4.9.tgz#c690b3727c3d82e0f947bd5b910b32af8a2ef57d"
 
 diffie-hellman@^5.0.0:
   version "5.0.2"
@@ -2709,7 +2705,7 @@ find-up@^2.0.0, find-up@^2.1.0:
   dependencies:
     locate-path "^2.0.0"
 
-firebase@^4.3.1, firebase@^4.8.1:
+firebase@^4.8.1:
   version "4.8.2"
   resolved "https://registry.yarnpkg.com/firebase/-/firebase-4.8.2.tgz#5c6878afe2199c382b4a7bde56a21d1bcb4421d3"
   dependencies:
@@ -2722,13 +2718,6 @@ firebase@^4.3.1, firebase@^4.8.1:
     "@firebase/storage" "0.1.6"
     dom-storage "^2.0.2"
     xmlhttprequest "^1.8.0"
-
-firebaseui@^2.5.1:
-  version "2.5.1"
-  resolved "https://registry.yarnpkg.com/firebaseui/-/firebaseui-2.5.1.tgz#98a89bddd1cbf11c01069e7e4278ecc3cca1e2fe"
-  dependencies:
-    dialog-polyfill "^0.4.7"
-    firebase "^4.3.1"
 
 flatten@^1.0.2:
   version "1.0.2"

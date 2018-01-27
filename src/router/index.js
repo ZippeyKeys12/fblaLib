@@ -1,6 +1,7 @@
 import Vue from "vue"
 import Router from "vue-router"
 import Search from "../components/Search"
+import LogInPage from "../components/LogInPage"
 import AboutPage from "../components/AboutPage"
 import CheckedOutItems from "../components/CheckedOutItems"
 import ReservedItems from "../components/ReservedItems"
@@ -29,6 +30,11 @@ export default new Router({
       path: "/checkedOut",
       name: "checkedOutItems",
       component: CheckedOutItems
+    },
+    {
+      path: "/logIn",
+      name: "logInPage",
+      component: LogInPage
     },
     {
       path: "/accountDetails",

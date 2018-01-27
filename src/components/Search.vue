@@ -10,7 +10,7 @@
     index-name="books"
     :query="searchString"
   >
-    <v-flex xs6 offset-xs3 class="pt-2 pb" v-observe-visibility="searchGone">
+    <v-flex xs12 sm6 offset-sm3 class="pt-2 pb" v-observe-visibility="searchGone">
       <v-card>
         <v-flex xs10 offset-xs1>
             <v-layout row>
@@ -43,15 +43,21 @@
         <v-card>
           <v-container fluid grid-list-lg>
             <v-slide-y-transition mode="out-in">
-              <v-layout row>
+              <v-layout :row="notTooSmall" :column="!notTooSmall">
                 <v-card-title>
                   <div color="grey">
-                    <div class="headline"><strong>{{result.title}}</strong></div>
-                    <div>{{result.author}}</div>
+                  	<div v-if="notTooSmall">
+						<div class="headline"><strong>{{result.title}}</strong></div>
+						<div>{{result.author}}</div>
+                    </div>
+                    <div v-else>
+						<div class="headline text-xs-center"><strong>{{result.title}}</strong></div>
+						<div class="text-xs-center">{{result.author}}</div>
+                    </div>
                   </div><slot results ></slot>
                 </v-card-title>
-                <v-spacer></v-spacer>
-                <v-card-actions>
+                <v-spacer v-if="loggedIn"></v-spacer>
+                <v-card-actions v-if="loggedIn">
                   <v-btn dark color="primary" @click="checkOut(result.title, result.author, result.copies)">Check Out</v-btn>
                   <v-btn dark color="primary" @click="reserve(result.title, result.author)">Reserve</v-btn>
                 </v-card-actions>
@@ -89,11 +95,21 @@
 <script>
 export default {
   name: "search",
-  props: ["firebase"],
+  props: ["firebase", "loggedIn"],
   data() {
     return {
       searchString: ""
     };
+  },
+  computed:{
+  	notTooSmall: {
+  		get: function () {
+  			return window.innerWidth>400;
+  		},
+  		set: function (newValue) {
+  			return window.innerWidth>400;
+  		}
+  	}
   },
   methods: {
     searchGone(isVisible, entry) {
@@ -117,6 +133,12 @@ export default {
     clearSearch() {
       this.searchString = "";
     }
+  },
+  created: function(){
+  	const component=this;
+  	window.addEventListener("resize", () => {
+  		component.notTooSmall=false;
+  	}, false);
   }
 };
 </script>

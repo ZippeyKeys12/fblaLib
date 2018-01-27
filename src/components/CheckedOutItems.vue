@@ -59,7 +59,7 @@ export default {
   },
   methods:{
   	overdue(date){
-  		return Math.round(((new Date().getTime())-(new Date(date[2], date[0], date[1]).getTime()))/(1000*60*60*24))>0
+  		return Math.round(((new Date().getTime())-(new Date(date[2], date[0], date[1]).getTime()))/(1000*60*60*24))>0;
   	}
   },
   mounted: function() {
@@ -72,9 +72,7 @@ export default {
             if (childSnapshot.val().uid === component.accountDetails.uid){
             	function calcDate(date){
             			date=new Date(date[2], date[0], date[1])
-            			console.log(date)
             			date.setDate(date.getDate()+21)
-            			console.log(date)
             			return date.getMonth()+"/"+ date.getDate()+"/"+ date.getFullYear();
             		}
             	component.checkedOutBooks.push({

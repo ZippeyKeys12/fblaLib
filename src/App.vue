@@ -22,6 +22,25 @@
                           <v-list-tile-title>{{ item.title }}</v-list-tile-title>
                       </v-list-tile-content>
                   </v-list-tile>
+                  <v-list-tile value="true" @click="linkto(overdueInfo.linkpath)">
+                      <v-list-tile-action>
+                          <v-badge color="red" v-model="overdue">
+							<span slot="badge">!</span>
+							<v-icon v-html="overdueInfo.icon"></v-icon>
+						  </v-badge>
+                      </v-list-tile-action>
+                      <v-list-tile-content>
+                          <v-list-tile-title>{{ overdueInfo.title }}</v-list-tile-title>
+                      </v-list-tile-content>
+                  </v-list-tile>
+                  <v-list-tile value="true" @click="toggleMap">
+                      <v-list-tile-action>
+                          <v-icon v-html="mapInfo.icon"></v-icon>
+                      </v-list-tile-action>
+                      <v-list-tile-content>
+                          <v-list-tile-title>{{ mapInfo.title }}</v-list-tile-title>
+                      </v-list-tile-content>
+                  </v-list-tile>
               </v-list>
               <v-divider></v-divider>
               <v-list>
@@ -50,15 +69,24 @@
         <v-content>
             <div id="firebaseui-auth-container" v-if="loggingIn"></div>
             <router-view v-else
-            :firebase="firebase" :accountDetails="accountDetails"
-            @checkOut="manageBooks" @reserve="manageBooks"
-            @visibility="floaterCheck"></router-view>
+            :firebase="firebase" :accountDetails="accountDetails" :loggedIn="loggedIn"
+            @checkOut="manageBooks" @reserve="manageBooks" @loginner="loggingInMethod"
+            @visibility="floaterCheck" @overdue="setOverdue"></router-view>
         </v-content>
         <v-footer app v-if="!loggingIn && !aboutPage" color="primary">
             <v-spacer></v-spacer>
             <span><font color="white">Site Created By Zain Aamer</font></span>
             <v-spacer></v-spacer>
         </v-footer>
+        <v-dialog v-model="map" fullscreen transition="dialog-bottom-transition" :overlay=false>
+          <v-card>
+			<v-card-actions>
+			  <v-btn flat color="primary" @click="toggleMap">Close</v-btn>
+			</v-card-actions>
+			<v-card-media :src="mapInfo.image" height="500px" contain>
+			</v-card-media>
+		  </v-card>
+        </v-dialog>
     </v-app>
 </template>
 
@@ -67,19 +95,10 @@
 // Firebase //
 //////////////
 import firebase from "firebase";
-import firebaseUI from "firebaseui";
-import "../node_modules/firebaseui/dist/firebaseui.css";
+import { firebaseConfig } from './config'
 
-firebase.initializeApp({
-  apiKey: "<API_KEY>",
-  authDomain: "<PROJECT_ID>.firebaseapp.com",
-  databaseURL: "https://<DATABASE_NAME>.firebaseio.com",
-  storageBucket: "<BUCKET>.appspot.com",
-  messagingSenderId: "<SENDER_ID>",
-});
+firebase.initializeApp(firebaseConfig);
 
-// Initialize the firebaseUI Widget using firebase.
-const ui = new firebaseUI.auth.AuthUI(firebase.auth());
 //Initialize the database
 const database = firebase.database();
 
@@ -119,32 +138,50 @@ export default {
       drawer: false,
       home: { icon: "search", title: "Search", linkpath: "/search" },
       items: [
-        { icon: "star", title: "Reserved Items", linkpath: "/reserved" },
-        { icon: "library_books", title: "Checked Out Items", linkpath: "/checkedOut" },
-        { icon: "account_circle", title: "Account Details", linkpath: "/accountDetails" }
+        { icon: "account_circle", title: "Account Details", linkpath: "/accountDetails" },
+        { icon: "star", title: "Reserved Items", linkpath: "/reserved" }
       ],
+      overdueInfo: { icon: "library_books", title: "Checked Out Items", linkpath: "/checkedOut" },
+      mapInfo: { icon: "map", title: "Library Map", image: require("./static/map.png") },
       licenses:{ icon: "info", title: "Licenses", linkpath: "/aboutSHSeLib" },
       title: "Serendipitous HS eLib",
       search: { icon: "search", title: "Search", linkpath: "/search" },
       accountDetails: {},
       tosPage: false,
       aboutPage: false,
+      logInPage: false,
       searchPage: false,
-      floater: false
+      floater: false,
+      overdue: false,
+      map:false
     };
   },
   methods: {
+  	toggleMap(){
+  		this.map=!this.map
+  	},
+  	setOverdue(){
+  		this.overdue=true;
+  	},
     linkto(pathname) {
       this.$router.push({ path: pathname });
       this.tosPage = this.$route.fullPath === "/tos";
       this.searchPage = this.$route.fullPath === "/search";
+      this.logInPage = this.$route.fullPath === "/logIn";
       this.aboutPage = this.$route.fullPath === "/aboutSHSeLib";
+      this.floater = false;
     },
     logInMenu() {
-      if (this.loggedIn) firebase.auth().signOut();
-      this.linkto("/search");
-      this.floater = false;
-      location.reload();
+      if (this.loggedIn){
+      	firebase.auth().signOut();
+      	this.linkto("/search");
+      }else{
+      	this.linkto("/logIn");
+      }
+    },
+    loggingInMethod(payload){
+    	this.accountDetails=payload;
+    	this.linkto("/search");
     },
     floaterCheck(searchVisibility) {
       this.floater = !searchVisibility;
@@ -163,7 +200,7 @@ export default {
         });
     }
   },
-  mounted: function() {
+  created: function() {
     const component = this;
     this.tosPage = this.$route.fullPath === "/tos";
     this.searchPage = this.$route.fullPath === "/search";
@@ -199,22 +236,35 @@ export default {
               providerData: providerData
             };
           });
+          firebase
+			.database()
+			.ref("/checkedOut/")
+			.once("value", function(snapshot) {
+			  snapshot.forEach(function(childSnapshot) {
+				if (childSnapshot.val().uid === component.accountDetails.uid){
+					function calcDate(date){
+							date=new Date(date[2], date[0], date[1])
+							date.setDate(date.getDate()+21)
+							return date.getMonth()+"/"+ date.getDate()+"/"+ date.getFullYear();
+						}
+					var checkedOutBooks=[];
+					checkedOutBooks.push({
+						title: childSnapshot.val().title,
+						author: childSnapshot.val().author,
+						date: calcDate(childSnapshot.val().date.split("/")).split("/")
+					});
+					for(let i of checkedOutBooks)
+						if(Math.round(((new Date().getTime())-(new Date(i.date[2], i.date[0], i.date[1]).getTime()))/(1000*60*60*24))>0)
+							component.overdue=true;
+				}
+			  });
+			});
           component.loggingIn = false;
         } else {
           // User is signed out.
           component.loggedIn = false;
-          if (!component.tosPage) {
-          	
-            ui.start("#firebaseui-auth-container", {
-              signInSuccessUrl: "/#/search",
-              signInOptions: [
-              	firebase.auth.EmailAuthProvider.PROVIDER_ID
-              ],
-              credentialHelper: firebaseui.auth.CredentialHelper.NONE,
-              // Terms of service url.
-              tosUrl: "/#/tos"
-            });
-            component.loggingIn = true;
+          if (component.logInPage) {
+          	component.loggingIn = true;
           }
         }
       },
