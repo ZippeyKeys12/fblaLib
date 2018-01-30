@@ -33,7 +33,6 @@ cordova build android --debug|release
 
 ### Android
 - Content Security Policy is weak
-  - To be addressed after the new login UI is sorted out
   
 ## To Do
 
