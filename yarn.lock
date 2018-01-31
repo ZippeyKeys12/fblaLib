@@ -592,10 +592,11 @@ babel-messages@^6.23.0:
   dependencies:
     babel-runtime "^6.22.0"
 
-babel-plugin-add-filehash@^6.9.4:
-  version "6.9.5"
-  resolved "https://registry.yarnpkg.com/babel-plugin-add-filehash/-/babel-plugin-add-filehash-6.9.5.tgz#b7c78b2311429703e81b71bbbbb27beca5681ed0"
+babel-plugin-add-filehash@^6.9.6:
+  version "6.9.6"
+  resolved "https://registry.yarnpkg.com/babel-plugin-add-filehash/-/babel-plugin-add-filehash-6.9.6.tgz#476ffb3f131e7a0bd757a1dc22af45aee6700a96"
   dependencies:
+    babel-preset-env "^1.6.1"
     babel-runtime "^6.0.0"
     babel-types "^6.8.0"
 
@@ -874,7 +875,7 @@ babel-plugin-transform-strict-mode@^6.24.1:
     babel-runtime "^6.22.0"
     babel-types "^6.24.1"
 
-babel-preset-env@^1.3.2:
+babel-preset-env@^1.3.2, babel-preset-env@^1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/babel-preset-env/-/babel-preset-env-1.6.1.tgz#a18b564cc9b9afdf4aae57ae3c1b0d99188e6f48"
   dependencies:
