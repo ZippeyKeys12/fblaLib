@@ -27,7 +27,7 @@
     "clean-webpack-plugin": "^0.1.15",
     "copy-webpack-plugin": "^4.0.1",
     "cordova-plugin-inappbrowser": "^2.0.1",
-    "css-loader": "^0.28.4",
+    "css-loader": "^0.28.9",
     "current-device": "^0.6.0",
     "epipebomb": "^1.0.0",
     "eventsource-polyfill": "^0.9.6",
