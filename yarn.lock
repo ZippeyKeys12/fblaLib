@@ -1979,9 +1979,9 @@ csso@~2.3.1:
     clap "^1.0.9"
     source-map "^0.5.3"
 
-current-device@^0.6.0:
-  version "0.6.3"
-  resolved "https://registry.yarnpkg.com/current-device/-/current-device-0.6.3.tgz#d80d9d83af4bb50be7f16b433cf3652682a3cd2f"
+current-device@^0.7.2:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/current-device/-/current-device-0.7.2.tgz#22eaf35181673e693d5679c34b6f5a08f097b5b8"
 
 currently-unhandled@^0.4.1:
   version "0.4.1"
