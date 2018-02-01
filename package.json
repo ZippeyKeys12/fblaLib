@@ -13,7 +13,7 @@
   ],
   "license": "ISC",
   "devDependencies": {
-    "autoprefixer": "^7.1.2",
+    "autoprefixer": "^7.2.5",
     "babel-core": "^6.22.1",
     "babel-loader": "^7.1.1",
     "babel-plugin-add-filehash": "^6.9.6",
