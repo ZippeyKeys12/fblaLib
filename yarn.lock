@@ -609,9 +609,9 @@ babel-messages@^6.23.0:
   dependencies:
     babel-runtime "^6.22.0"
 
-babel-plugin-add-filehash@^6.9.6:
-  version "6.9.6"
-  resolved "https://registry.yarnpkg.com/babel-plugin-add-filehash/-/babel-plugin-add-filehash-6.9.6.tgz#476ffb3f131e7a0bd757a1dc22af45aee6700a96"
+babel-plugin-add-filehash@^6.9.7:
+  version "6.9.7"
+  resolved "https://registry.yarnpkg.com/babel-plugin-add-filehash/-/babel-plugin-add-filehash-6.9.7.tgz#4a4d2e37d27b3a7f1f06f691fdf811673dc07340"
   dependencies:
     babel-preset-env "^1.6.1"
     babel-runtime "^6.0.0"
