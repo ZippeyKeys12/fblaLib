@@ -67,7 +67,7 @@
   },
   "dependencies": {
     "@firebase/app-types": "^0.1.0",
-    "cordova-android": "~7.0.0",
+    "cordova-android": "~7.1.0",
     "cordova-browser": "^5.0.3",
     "cordova-plugin-browsertab": "^0.2.0",
     "cordova-plugin-buildinfo": "^2.0.1",
