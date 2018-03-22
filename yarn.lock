@@ -1265,7 +1265,7 @@ bytes@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-3.0.0.tgz#d32815404d689699f85a4ea4fa8755dd13a96048"
 
-cacache@^10.0.1, cacache@^10.0.4:
+cacache@^10.0.4:
   version "10.0.4"
   resolved "https://registry.yarnpkg.com/cacache/-/cacache-10.0.4.tgz#6452367999eff9d4188aefd9a14e9d7c6a263460"
   dependencies:
@@ -6872,8 +6872,8 @@ vue@^2.5.3:
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.15.tgz#fdb67861dde967cd8d1b53116380f2f269b45202"
 
 vuetify@^1.0.1:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.0.7.tgz#35e89b864e4d34154ad2d99af9a13315a120738f"
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.0.10.tgz#875d2d27d95470ce977ce9c705bb41b5b547e801"
 
 watchpack@^1.4.0:
   version "1.4.0"
